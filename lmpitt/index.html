@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cilok, Batagor &amp; Baso Tahu Siomay - Buatan Rumahan, Hangat Setiap Hari</title>
+<meta name="description" content="Jajanan rumahan: cilok kuah, cilok bumbu kacang, batagor kuah, batagor bumbu kacang, dan baso tahu siomay. Pesan lewat WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#17407A;
+    --blue-deep:#0F2D58;
+    --chili:#E23D28;
+    --sun:#FFC93C;
+    --nut:#7A4A22;
+    --white:#FFFFFF;
+    --mist:#EAF0F8;
+    --ink:#15202E;
+    --head:"Baloo 2","Trebuchet MS",sans-serif;
+    --body:"Nunito Sans","Segoe UI",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{font-family:var(--body);color:var(--ink);background:var(--white);line-height:1.6;font-size:17px}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+  .wrap{width:min(1120px,92%);margin-inline:auto}
+  h1,h2,h3{font-family:var(--head);line-height:1.08}
+  h2{font-size:clamp(2rem,4.4vw,3rem);margin-bottom:.5rem;color:var(--blue)}
+  .lead{max-width:54ch;color:#445064}
+
+  .btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;transition:transform .15s,background .15s;cursor:pointer;font-family:var(--body);font-size:1rem}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-chili{background:var(--chili);color:#fff}
+  .btn-chili:hover{background:#c92f1c}
+  .btn-sun{background:var(--sun);color:var(--blue-deep)}
+  .btn-sun:hover{background:#ffd35f}
+  .btn-line{border-color:#ffffff80;color:#fff}
+  .btn-line:hover{background:#ffffff1a}
+
+  /* Slot foto: kalau file foto belum ada, tampil kotak petunjuk */
+  .photo{position:relative;overflow:hidden;background:var(--mist);display:grid;place-items:center;text-align:center;color:#5b6b82;font-weight:700;padding:1rem}
+  .photo span{font-size:.95rem}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+  /* Navigasi */
+  header{position:sticky;top:0;z-index:10;background:var(--blue);color:#fff;box-shadow:0 2px 0 var(--sun)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:var(--head);font-weight:800;font-size:1.35rem;text-decoration:none;display:flex;align-items:center;gap:.55rem}
+  .nav ul{display:flex;gap:1.6rem;list-style:none}
+  .nav ul a{text-decoration:none;font-weight:600}
+  .nav ul a:hover{text-decoration:underline;text-decoration-color:var(--sun);text-underline-offset:7px;text-decoration-thickness:3px}
+  .nav .btn{padding:.5rem 1.1rem}
+
+  /* Hero */
+  .hero{background:var(--blue);color:#fff;padding:3.5rem 0 4.5rem;position:relative}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:34px;background:var(--white);clip-path:polygon(0 100%,4% 20%,8% 100%,12% 20%,16% 100%,20% 20%,24% 100%,28% 20%,32% 100%,36% 20%,40% 100%,44% 20%,48% 100%,52% 20%,56% 100%,60% 20%,64% 100%,68% 20%,72% 100%,76% 20%,80% 100%,84% 20%,88% 100%,92% 20%,96% 100%,100% 20%,100% 100%)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:2.5rem;align-items:center}
+  .hero h1{font-size:clamp(2.7rem,6.6vw,5rem);font-weight:800;margin-bottom:1rem}
+  .hero h1 em{font-style:normal;color:var(--sun)}
+  .hero p{font-size:1.15rem;max-width:44ch;color:#d6e2f3;margin-bottom:1.8rem}
+  .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+  .hero .photo{aspect-ratio:1/1;border-radius:46% 54% 50% 50% / 52% 48% 52% 48%;border:6px solid var(--sun);background:var(--blue-deep);color:#a9bddb}
+
+  /* Menu */
+  .menu{padding:4.5rem 0 3rem}
+  .group{margin-top:2.6rem}
+  .group h3{font-size:1.7rem;color:var(--blue);display:flex;align-items:center;gap:.7rem;margin-bottom:.3rem}
+  .group h3::after{content:"";flex:1;height:3px;background:var(--sun);border-radius:2px}
+  .group>p{color:#445064;margin-bottom:1.2rem}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+  .cards.one{grid-template-columns:minmax(0,calc(50% - .7rem))}
+  .card{border:2px solid var(--mist);border-radius:20px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .card .photo{aspect-ratio:4/3}
+  .card-body{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;flex:1}
+  .tag{align-self:flex-start;font-size:.85rem;font-weight:700;padding:.15rem .7rem;border-radius:999px;margin-bottom:.5rem}
+  .tag.kuah{background:#FFF0B8;color:#6b4a00}
+  .tag.kacang{background:#F3E1CF;color:var(--nut)}
+  .tag.kukus{background:#DDEBFA;color:var(--blue)}
+  .card h4{font-family:var(--head);font-size:1.5rem;line-height:1.1}
+  .card p{color:#445064;font-size:.97rem;margin:.4rem 0 1rem;flex:1}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .price{font-family:var(--head);font-weight:800;font-size:1.5rem;color:var(--chili)}
+  .card .btn{padding:.55rem 1.2rem;background:var(--blue);color:#fff}
+  .card .btn:hover{background:var(--blue-deep)}
+
+  /* Kenapa kami */
+  .why{background:var(--mist);padding:4.5rem 0;margin-top:2rem}
+  .why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:center}
+  .why .photo{aspect-ratio:5/4;border-radius:24px;background:#d5e1f1}
+  .why p+p{margin-top:1rem}
+  .why ul{list-style:none;margin-top:1.4rem;display:grid;gap:.8rem}
+  .why li{padding-left:2rem;position:relative;font-weight:600}
+  .why li::before{content:"";position:absolute;left:0;top:.45rem;width:1.1rem;height:1.1rem;border-radius:50%;background:var(--chili);box-shadow:0 0 0 4px #E23D2830}
+
+  /* Cara pesan */
+  .steps{background:var(--blue);color:#fff;padding:4.5rem 0}
+  .steps h2{color:#fff}
+  .steps .lead{color:#d6e2f3}
+  .step-list{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.2rem}
+  .step-list li{counter-increment:s;position:relative;padding-top:3.7rem}
+  .step-list li::before{content:counter(s);position:absolute;top:0;left:0;width:2.9rem;height:2.9rem;border-radius:50%;background:var(--sun);color:var(--blue-deep);font-family:var(--head);font-weight:800;font-size:1.4rem;display:grid;place-items:center}
+  .step-list h3{font-size:1.3rem;margin-bottom:.2rem}
+  .step-list p{color:#d6e2f3;font-size:.96rem}
+
+  /* Kontak */
+  .contact{padding:4.5rem 0}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  .info{list-style:none;margin-top:1.4rem;display:grid;gap:1rem}
+  .info b{display:block;font-size:.9rem;color:#5b6b82;font-weight:700}
+  form{background:var(--mist);border-radius:22px;padding:1.7rem;display:grid;gap:1rem}
+  label{font-weight:700;font-size:.95rem;display:grid;gap:.35rem}
+  input,select,textarea{font:inherit;padding:.7rem .85rem;border:2px solid #c3d1e4;border-radius:12px;background:#fff;width:100%}
+  input:focus,select:focus,textarea:focus{outline:3px solid var(--sun);border-color:var(--blue)}
+  textarea{resize:vertical;min-height:70px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+  footer.site{background:var(--blue-deep);color:#b7c7df;padding:2rem 0;font-size:.93rem}
+  footer.site .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+  @media (max-width:900px){
+    .hero-grid,.why-grid,.contact-grid{grid-template-columns:1fr}
+    .hero .photo{max-width:380px;margin-inline:auto}
+    .nav ul{display:none}
+    .step-list{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:640px){
+    .cards,.cards.one{grid-template-columns:1fr}
+    .step-list,.row{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#atas" aria-label="Ke bagian atas halaman">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="#FFC93C"/><circle cx="12" cy="14" r="4.5" fill="#17407A"/><circle cx="22" cy="14" r="4.5" fill="#17407A"/><circle cx="17" cy="22" r="4.5" fill="#17407A"/></svg>
+      Cilok &amp; Batagor Keluarga
+    </a>
+    <nav aria-label="Menu utama">
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#tentang">Tentang kami</a></li>
+        <li><a href="#cara-pesan">Cara pesan</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sun" href="#kontak">Pesan sekarang</a>
+  </div>
+</header>
+
+<main id="atas">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Cilok dan batagor <em>panas</em>, bumbunya bikin nambah.</h1>
+        <p>Dibuat sendiri di rumah setiap hari. Pilih kuah gurih atau bumbu kacang yang kental, lalu pesan lewat WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-chili" href="#menu">Lihat menu</a>
+          <a class="btn btn-line" href="#cara-pesan">Cara pesan</a>
+        </div>
+      </div>
+      <div class="photo">
+        <span>Taruh foto utama di images/hero.jpg</span>
+        <img src="images/hero.jpg" alt="Semangkuk cilok dan batagor dengan bumbu kacang" onerror="this.remove()">
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu" aria-labelledby="judul-menu">
+    <div class="wrap">
+      <h2 id="judul-menu">Menu kami</h2>
+      <p class="lead">Lima pilihan, semuanya dibuat segar setiap hari.</p>
+
+      <div class="group">
+        <h3>Cilok</h3>
+        <p>Cilok kenyal dengan isi yang gurih. Pilih disiram kuah panas atau dilumuri bumbu kacang.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="photo">
+              <span>Foto: images/cilok-kuah.jpg</span>
+              <img src="images/cilok-kuah.jpg" alt="Cilok kuah dalam mangkuk" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="card-body">
+              <span class="tag kuah">Kuah</span>
+              <h4>Cilok Kuah</h4>
+              <p>Cilok kenyal dalam kuah kaldu hangat yang gurih dan pedas sesuai selera.</p>
+              <div class="card-foot"><span class="price">Rp10.000</span><a class="btn" href="#kontak" data-menu="Cilok Kuah">Pesan</a></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="photo">
+              <span>Foto: images/cilok-kacang.jpg</span>
+              <img src="images/cilok-kacang.jpg" alt="Cilok bumbu kacang" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="card-body">
+              <span class="tag kacang">Bumbu kacang</span>
+              <h4>Cilok Bumbu Kacang</h4>
+              <p>Cilok yang dibalur bumbu kacang kental, manis gurih, dan bisa ditambah sambal.</p>
+              <div class="card-foot"><span class="price">Rp10.000</span><a class="btn" href="#kontak" data-menu="Cilok Bumbu Kacang">Pesan</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Batagor</h3>
+        <p>Batagor goreng renyah di luar, lembut di dalam. Sama seperti cilok, kamu bisa pilih kuah atau bumbu kacang.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="photo">
+              <span>Foto: images/batagor-kuah.jpg</span>
+              <img src="images/batagor-kuah.jpg" alt="Batagor kuah" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="card-body">
+              <span class="tag kuah">Kuah</span>
+              <h4>Batagor Kuah</h4>
+              <p>Batagor goreng yang disiram kuah panas, cocok untuk cuaca dingin atau hujan.</p>
+              <div class="card-foot"><span class="price">Rp12.000</span><a class="btn" href="#kontak" data-menu="Batagor Kuah">Pesan</a></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="photo">
+              <span>Foto: images/batagor-kacang.jpg</span>
+              <img src="images/batagor-kacang.jpg" alt="Batagor bumbu kacang" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="card-body">
+              <span class="tag kacang">Bumbu kacang</span>
+              <h4>Batagor Bumbu Kacang</h4>
+              <p>Batagor renyah dengan bumbu kacang, kecap, dan perasan jeruk yang segar.</p>
+              <div class="card-foot"><span class="price">Rp12.000</span><a class="btn" href="#kontak" data-menu="Batagor Bumbu Kacang">Pesan</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Baso tahu siomay</h3>
+        <p>Siomay kukus dengan baso dan tahu, disajikan bersama bumbu kacang.</p>
+        <div class="cards one">
+          <article class="card">
+            <div class="photo">
+              <span>Foto: images/baso-tahu-siomay.jpg</span>
+              <img src="images/baso-tahu-siomay.jpg" alt="Baso tahu siomay dengan bumbu kacang" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="card-body">
+              <span class="tag kukus">Kukus</span>
+              <h4>Baso Tahu Siomay</h4>
+              <p>Siomay, baso, dan tahu yang dikukus lembut, ditemani bumbu kacang dan sambal.</p>
+              <div class="card-foot"><span class="price">Rp12.000</span><a class="btn" href="#kontak" data-menu="Baso Tahu Siomay">Pesan</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section class="why" id="tentang" aria-labelledby="judul-tentang">
+    <div class="wrap why-grid">
+      <div class="photo">
+        <span>Foto orang tua atau gerobak: images/tentang.jpg</span>
+        <img src="images/tentang.jpg" alt="Orang tua penjual sedang menyiapkan pesanan" loading="lazy" onerror="this.remove()">
+      </div>
+      <div>
+        <h2 id="judul-tentang">Usaha keluarga, dibuat dengan tangan sendiri</h2>
+        <p>Semua jajanan kami dibuat langsung oleh orang tua di rumah. Adonan, bumbu kacang, sampai kuahnya diracik sendiri, jadi rasanya sama dari hari ke hari.</p>
+        <ul>
+          <li>Dibuat segar setiap hari</li>
+          <li>Bumbu kacang dan kuah racikan sendiri</li>
+          <li>Tingkat pedas bisa diatur sesuai selera</li>
+          <li>Bisa diambil di tempat atau diantar</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA PESAN -->
+  <section class="steps" id="cara-pesan" aria-labelledby="judul-cara">
+    <div class="wrap">
+      <h2 id="judul-cara">Cara pesan</h2>
+      <p class="lead">Empat langkah saja, tanpa perlu membuat akun.</p>
+      <ol class="step-list">
+        <li><h3>Pilih menu</h3><p>Tentukan menu dan jumlah porsi yang kamu mau.</p></li>
+        <li><h3>Isi formulir</h3><p>Tulis nama dan catatan, misalnya tingkat pedas.</p></li>
+        <li><h3>Kirim lewat WhatsApp</h3><p>Pesananmu otomatis terisi di chat kami, tinggal kirim.</p></li>
+        <li><h3>Ambil atau tunggu diantar</h3><p>Kami konfirmasi harga dan waktu, lalu pesananmu disiapkan.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section class="contact" id="kontak" aria-labelledby="judul-kontak">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 id="judul-kontak">Mau pesan?</h2>
+        <p class="lead">Isi formulir di samping, pesananmu langsung terbuka di WhatsApp. Kamu juga bisa menghubungi kami langsung.</p>
+        <ul class="info">
+          <li><b>WhatsApp</b><a href="https://wa.me/6289602596373">0896-0259-6373</a></li>
+          <li><b>Alamat</b>jln. raya cimindi/mahar martanegara</li>
+          <li><b>Jam buka</b>Setiap hari, 16.00-22.00 WIB</li>
+        </ul>
+      </div>
+      <form id="form-pesan">
+        <label>Nama
+          <input type="text" id="nama" required autocomplete="name">
+        </label>
+        <div class="row">
+          <label>Menu
+            <select id="menu-pilih">
+              <option>Cilok Kuah</option>
+              <option>Cilok Bumbu Kacang</option>
+              <option>Batagor Kuah</option>
+              <option>Batagor Bumbu Kacang</option>
+              <option>Baso Tahu Siomay</option>
+            </select>
+          </label>
+          <label>Jumlah porsi
+            <input type="number" id="jumlah" min="1" value="1" required>
+          </label>
+        </div>
+        <div class="row">
+          <label>Tingkat pedas
+            <select id="pedas">
+              <option>Tidak pedas</option>
+              <option>Sedang</option>
+              <option>Pedas</option>
+            </select>
+          </label>
+          <label>Diambil atau diantar
+            <select id="antar">
+              <option>Ambil di tempat</option>
+              <option>Diantar</option>
+            </select>
+          </label>
+        </div>
+        <label>Catatan
+          <textarea id="catatan" placeholder="Contoh: bumbu kacangnya dipisah"></textarea>
+        </label>
+        <button type="submit" class="btn btn-chili">Kirim pesanan lewat WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>&copy; 2026 Cilok &amp; Batagor Keluarga. Semua hak dilindungi.</span>
+    <span>Dibuat untuk tugas landing page UMKM.</span>
+  </div>
+</footer>
+
+<script>
+  // Nomor WhatsApp (format 62, tanpa tanda + atau 0 di depan). Ganti dengan nomor asli.
+  var NOMOR_WA = '6281234567890';
+
+  // Tombol "Pesan" di kartu menu otomatis memilih menu di formulir
+  document.querySelectorAll('[data-menu]').forEach(function (tombol) {
+    tombol.addEventListener('click', function () {
+      document.getElementById('menu-pilih').value = tombol.getAttribute('data-menu');
+    });
+  });
+
+  // Mengubah isi formulir menjadi pesan WhatsApp
+  document.getElementById('form-pesan').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var catatan = document.getElementById('catatan').value.trim();
+    var pesan = 'Halo, saya mau pesan.\n' +
+      'Nama: ' + document.getElementById('nama').value + '\n' +
+      'Menu: ' + document.getElementById('menu-pilih').value + '\n' +
+      'Jumlah: ' + document.getElementById('jumlah').value + ' porsi\n' +
+      'Pedas: ' + document.getElementById('pedas').value + '\n' +
+      'Pengambilan: ' + document.getElementById('antar').value +
+      (catatan ? '\nCatatan: ' + catatan : '');
+    window.open('https://wa.me/' + NOMOR_WA + '?text=' + encodeURIComponent(pesan), '_blank');
+  });
+</script>
+</body>
+</html>
